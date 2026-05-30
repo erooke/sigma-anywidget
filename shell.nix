@@ -20,4 +20,13 @@ pkgs.mkShell {
 
   NPINS_DIRECTORY = "./nix/npins/";
   ANYWIDGET_HMR = "1"; # Enable hot module reloading for anywidget
+
+  shellHook = ''
+    if [ -z "$PYTHONPATH" ]
+      then export PYTHONPATH=$(realpath ./src)
+      else export PYTHONPATH=$(realpath ./src):$PYTHONPATH
+    fi
+
+    just --list-heading $'Some Commands:\n' --list-prefix "just " --list
+  '';
 }
