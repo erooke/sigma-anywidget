@@ -6,6 +6,7 @@
 }:
 let
   formatter = import ./nix/format.nix { inherit treefmt-nix pkgs; };
+  python = import ./nix/python.nix { inherit pkgs; };
 in
 pkgs.mkShell {
   nativeBuildInputs = [
@@ -14,6 +15,7 @@ pkgs.mkShell {
     pkgs.nodejs
 
     formatter
+    python
   ];
 
   NPINS_DIRECTORY = "./nix/npins/";
