@@ -11,6 +11,8 @@ pkgs.mkShell {
   nativeBuildInputs = [
     pkgs.npins
     pkgs.just
+    pkgs.nodejs
+
     formatter
   ];
 
