@@ -13,6 +13,7 @@ pkgs.mkShell {
     pkgs.npins
     pkgs.just
     pkgs.nodejs
+    pkgs.hatch
 
     formatter
     python
