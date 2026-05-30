@@ -1,0 +1,19 @@
+{
+  "scripts": {
+    "dev": "npm run build -- --sourcemap=inline --watch",
+   "build": "esbuild src/sigma_anywidget/js/widget.ts --minify --format=esm --bundle --outdir=src/sigma_anywidget/static/",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@sigma/node-image": "^3.0.0",
+    "graphology": "^0.26.0",
+    "graphology-layout-forceatlas2": "^0.10.1",
+    "sigma": "^3.0.2"
+  },
+  "devDependencies": {
+    "@anywidget/types": "^0.2.0",
+    "esbuild": "^0.25.4",
+    "typescript": "^5.8.3",
+    "typescript-language-server": "^5.1.3"
+  }
+}

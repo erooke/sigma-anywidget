@@ -19,4 +19,5 @@ pkgs.mkShell {
   ];
 
   NPINS_DIRECTORY = "./nix/npins/";
+  ANYWIDGET_HMR = "1"; # Enable hot module reloading for anywidget
 }
