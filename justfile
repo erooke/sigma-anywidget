@@ -22,3 +22,7 @@ setup:
 update:
     npins update
     npm update --package-lock-only
+
+# Remove build artifacts
+clean:
+    git clean -xf src
