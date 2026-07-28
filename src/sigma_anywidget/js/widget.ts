@@ -11,6 +11,8 @@ interface WidgetModel {
   nodes: object;
   edges: Array<[string, string, number]>;
   selected: Array<string>;
+  node_scale: number;
+  edge_scale: number;
 }
 
 function svgToDataURI(svg: string): string {
@@ -72,6 +74,9 @@ export default async () => {
 
       renderer.on("clickNode", toggle_node_selection);
 
+      model.on("change:node_scale", renderer.refresh);
+      model.on("change:edge_scale", renderer.refresh);
+
       function clear_selection() {
         model.set("selected", []);
         model.save_changes();
@@ -88,6 +93,11 @@ export default async () => {
       renderer.setSetting("nodeReducer", (node, data) => {
         const res: Partial<NodeDisplayData> = { ...data };
 
+        // Apply the node scaling
+        if (res.size !== undefined) {
+          res.size *= model.get("node_scale");
+        }
+
         const selected = model.get("selected");
         if (selected.length == 0) {
           // Nothing is selected yet, there is nothing to do drawing wise
@@ -103,6 +113,11 @@ export default async () => {
 
       renderer.setSetting("edgeReducer", (edge, data) => {
         const res: Partial<EdgeDisplayData> = { ...data };
+
+        // Apply the edge scaling
+        if (res.size !== undefined) {
+          res.size *= model.get("edge_scale");
+        }
 
         const selected = model.get("selected");
         if (selected.length == 0) {

@@ -12,6 +12,8 @@ class SigmaWidget(anywidget.AnyWidget):
     nodes = traitlets.Dict(dict()).tag(sync=True)
     edges = traitlets.List(list()).tag(sync=True)
     selected = traitlets.List(list()).tag(sync=True)
+    node_scale = traitlets.Float(1).tag(sync=True)
+    edge_scale = traitlets.Float(1).tag(sync=True)
 
     def clear_selection(self):
         self.send({"type": "clear_selection"})
